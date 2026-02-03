@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1 {
+    color: #7a0030;
+    margin-bottom: 40px;
+}
+
+button {
+    position: fixed; /* KEY FIX */
+    padding: 14px 32px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #ff2f6e;
+    color: white;
+    left: 40%;
+    top: 55%;
+}
+
+#no {
+    background: #333;
+    color: white;
+    left: 55%;
+    top: 55%;
+}
+
+#msg {
+    display: none;
+    font-size: 24px;
+    color: #6a0032;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you be my Valentine this year, my Rishu? 💘</h1>
+
+<button id="yes">Yes 💖</button>
+<button id="no">No 😜</button>
+
+<div id="msg">
+    I don’t just want today…<br>
+    I want you to be my Valentine forever ❤️
+</div>
+
+<script>
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const msg = document.getElementById("msg");
+
+let yesDodged = false;
+
+function moveButton(btn) {
+    const btnWidth = btn.offsetWidth;
+    const btnHeight = btn.offsetHeight;
+
+    const maxX = window.innerWidth - btnWidth - 10;
+    const maxY = window.innerHeight - btnHeight - 10;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+
+no.addEventListener("mouseover", () => {
+    moveButton(no);
+});
+
+yes.addEventListener("mouseover", () => {
+    if (!yesDodged) {
+        moveButton(yes);
+        yesDodged = true;
+    }
+});
+
+yes.addEventListener("click", () => {
+    yes.style.display = "none";
+    no.style.display = "none";
+    msg.style.display = "block";
+});
+</script>
+
+</body>
+</html>
